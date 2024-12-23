@@ -2,16 +2,30 @@ import time
 import matplotlib.pyplot as plt
 import random
 
+# Iteratif
+
 def find_highest_bid(bids):
+    i = 0
     if len(bids) == 0:
-        raise ValueError("No bids available")
+        raise ValueError("Tidak ada tawaran yang tersedia")
 
     highest_bid = bids[0]
-    for bid in bids:
-        if bid > highest_bid:
-            highest_bid = bid
+    for i in range(len(bids)):  
+        if bids[i] > highest_bid:
+            highest_bid = bids[i]
 
     return highest_bid
+
+#recursive
+
+def find_max_recursive(prices, index=0):
+    if index == len(prices) - 1:
+        return prices[index]
+    max_rest = find_max_recursive(prices, index + 1)
+    if prices[index] > max_rest:
+        return prices[index]
+    else:
+        return max_rest
 
 input_sizes = [10, 100, 1000, 5000, 10000, 50000, 100000, 500000, 1000000]
 execution_times = []
